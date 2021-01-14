@@ -1,0 +1,29 @@
+<h1>Mas Global employee test</h1>
+<p>Input an employee Id to search their information or leave the field empty to retrive all employees:</p>
+<input class="employee" placeholder="Employee's ID number" [(ngModel)]="employeeId" />
+<button class="button" (click)="search()">Get Employees</button>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="employees && !errors; else data">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Contract</th>
+            <th>Role Id</th>
+            <th>Role</th>
+            <th>Role Description</th>
+            <th>Annual Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees">
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.contractTypeName }}</td>
+            <td>{{ employee.roleId }}</td>
+            <td>{{ employee.roleName }}</td>
+            <td>{{ employee.roleDescription }}</td>
+            <td>{{ employee.annualSalary | currency}}</td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #data>
+    <h1>{{errors}}</h1>
+</ng-template>
